@@ -27,7 +27,6 @@ const App: React.FC = () => {
     console.log('App component mounted');
 
     try {
-      // Get current URL when popup opens
       chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
         console.log('Tabs query result:', tabs);
 
@@ -57,7 +56,6 @@ const App: React.FC = () => {
         setIsLoaded(true);
       });
 
-      // Get current CORS setting
       chrome.storage.local.get(['corsEnabled'], result => {
         console.log('CORS setting:', result.corsEnabled);
         setCorsEnabled(result.corsEnabled || false);
@@ -71,7 +69,6 @@ const App: React.FC = () => {
 
   const handleKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter' && !event.shiftKey && !event.ctrlKey && !event.altKey) {
-      // Only handle Enter if we're not in a textarea or if we're in an input and it's not being used for composition
       const target = event.target as HTMLElement;
       if (
         target.tagName !== 'TEXTAREA' &&
@@ -86,7 +83,6 @@ const App: React.FC = () => {
   const handleCorsToggle = (enabled: boolean) => {
     setCorsEnabled(enabled);
     chrome.storage.local.set({ corsEnabled: enabled }, () => {
-      // Notify background script about the change
       chrome.runtime.sendMessage({
         type: 'CORS_TOGGLE',
         enabled,
@@ -95,7 +91,6 @@ const App: React.FC = () => {
   };
 
   const handleSave = () => {
-    // First clean up empty query parameters from the UI
     const cleanedParams = queryParams.filter(
       param => param.key.trim() !== '' || param.value.trim() !== ''
     );
@@ -103,19 +98,16 @@ const App: React.FC = () => {
 
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
       if (tabs[0]?.id) {
-        // Construct new URL
         let newUrl = `${protocol}://`;
         if (subdomain) {
           newUrl += `${subdomain}.`;
         }
         newUrl += domain;
 
-        // Add path
         if (path) {
           newUrl += path;
         }
 
-        // Add enabled query parameters that have both key and value
         const validParams = cleanedParams.filter(
           param => param.enabled && param.key.trim() !== '' && param.value.trim() !== ''
         );
@@ -128,7 +120,6 @@ const App: React.FC = () => {
           newUrl += `?${searchParams.toString()}`;
         }
 
-        // Navigate to new URL
         chrome.tabs.update(tabs[0].id, { url: newUrl });
       }
     });
