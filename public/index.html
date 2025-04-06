@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Manipulator</title>
+  <style>
+    html, body {
+      width: 400px;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: white;
+      overflow: hidden;
+    }
+    #root {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .scrollable {
+      overflow-y: auto;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    .scrollable::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="vendors.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html> 
