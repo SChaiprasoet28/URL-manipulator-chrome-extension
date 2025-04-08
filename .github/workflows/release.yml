@@ -1,15 +1,10 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
 
 jobs:
   release:
-    # Only run on master branch
-    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -72,6 +67,9 @@ jobs:
           git config --local user.name "GitHub Action"
           git add version.json package.json
           git commit -m "chore: bump version to $NEW_VERSION [skip ci]"
+          
+          # Pull before pushing to avoid conflicts
+          git pull --rebase origin master
           git push
 
       - name: Generate changelog

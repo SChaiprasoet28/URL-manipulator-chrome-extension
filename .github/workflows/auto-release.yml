@@ -75,6 +75,9 @@ jobs:
           git config --local user.name "GitHub Action"
           git add version.json package.json
           git commit -m "chore: bump version to $NEW_VERSION [skip ci]"
+          
+          # Pull before pushing to avoid conflicts
+          git pull --rebase origin master
           git push
 
       - name: Create Release

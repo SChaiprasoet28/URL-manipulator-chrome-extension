@@ -43,15 +43,7 @@ function updateVersion(newVersion) {
     versionJson.version = newVersion;
     fs.writeFileSync(versionJsonPath, JSON.stringify(versionJson, null, 2) + '\n');
     
-    // Remove version from package.json to avoid merge conflicts
-    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-    if (packageJson.version) {
-      delete packageJson.version;
-      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
-    }
-    
     console.log(`Version updated to ${newVersion} in version.json`);
-    console.log(`Version field removed from package.json to avoid merge conflicts`);
   } catch (error) {
     console.error('Error updating version files:', error.message);
     process.exit(1);
