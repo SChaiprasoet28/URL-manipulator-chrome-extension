@@ -1,8 +1,8 @@
 # URL Manipulator Chrome Extension
 
-A fun project for browser extension that allows users to manipulate and transform URLs according to customizable rules. Built with React, TypeScript, and modern web technologies.
+A browser extension that enables URL manipulation and transformation through customizable rules, built with React, TypeScript, and modern web technologies.
 
-Inspired by the web developer day-to-day need for better URL management in web browsers.
+Created to streamline URL management for web developers.
 
 ## Features
 
