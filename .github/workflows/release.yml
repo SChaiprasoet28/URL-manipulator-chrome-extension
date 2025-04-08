@@ -1,0 +1,68 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get version type from commit message
+        id: version-type
+        run: |
+          VERSION_TYPE=$(node scripts/version.js get-version-type)
+          echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
+
+      - name: Increment version
+        id: increment-version
+        run: |
+          NEW_VERSION=$(node scripts/version.js increment ${{ steps.version-type.outputs.version_type }})
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Build extension
+        run: npm run build
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          CHANGELOG=$(node scripts/version.js changelog)
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.increment-version.outputs.new_version }}
+          name: Release v${{ steps.increment-version.outputs.new_version }}
+          body: |
+            ## Changes in this release
+            
+            ${{ steps.changelog.outputs.changelog }}
+            
+            ## Installation
+            
+            Download the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/url-manipulator/your-extension-id).
+          files: |
+            dist/*.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
