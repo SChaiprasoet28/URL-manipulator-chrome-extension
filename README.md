@@ -16,13 +16,13 @@ Created to streamline URL management for web developers.
 
 ## Tech Stack
 
-- React 18
-- TypeScript
-- TailwindCSS
-- RSpack (for fast, Rust-based bundling)
-- Jest for testing
-- ESLint & Prettier for code quality
-- Chrome Extension Manifest V3
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width="20" height="20"/> React 18
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" width="20" height="20"/> TypeScript
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" alt="TailwindCSS" width="20" height="20"/> TailwindCSS
+- <img src="https://www.rspack.dev/img/logo.svg" alt="RSpack" width="20" height="20"/> RSpack (for fast, Rust-based bundling)
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jest/jest-plain.svg" alt="Jest" width="20" height="20"/> Jest for testing
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/eslint/eslint-original.svg" alt="ESLint" width="20" height="20"/> ESLint & <img src="https://raw.githubusercontent.com/prettier/prettier-logo/master/images/prettier-icon.svg" alt="Prettier" width="20" height="20"/> Prettier for code quality
+- <img src="https://www.gstatic.com/chrome/apps/chrome_app_icon.svg" alt="Chrome Extension" width="20" height="20"/> Chrome Extension Manifest V3
 
 ## Prerequisites
 
