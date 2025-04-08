@@ -21,9 +21,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'pnpm'
 
-      - name: Setup pnpm
+      - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -43,7 +42,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build extension
         run: pnpm build
@@ -64,7 +63,7 @@ jobs:
         id: increment_version
         run: |
           # Use our version script to increment the patch version
-          pnpm version:increment patch
+          node scripts/version.js increment patch
           
           # Get the new version
           NEW_VERSION=$(node -p "require('./package.json').version")
