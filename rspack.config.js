@@ -1,5 +1,4 @@
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -11,34 +10,40 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    clean: {
-      keep: /icons[\\/].*$/,
-    },
+    clean: true,
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        loader: 'builtin:swc-loader',
+        options: {
+          sourceMap: true,
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+            transform: {
+              react: {
+                runtime: 'automatic',
+              },
+            },
+          },
+        },
         exclude: /node_modules/,
       },
       {
         test: /\.css$/,
+        type: 'css',
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-            },
-          },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
                 plugins: [
-                  require('tailwindcss'),
-                  require('autoprefixer'),
+                  'tailwindcss',
+                  'autoprefixer',
                 ],
               },
             },
@@ -50,29 +55,30 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.css'],
   },
-  plugins: [
-    new CopyPlugin({
+  builtins: {
+    copy: {
       patterns: [
         { 
           from: 'public',
           to: '.',
-          globOptions: {
-            ignore: ['**/icon.svg'],
-          }
         },
         {
           from: 'public/icons',
           to: 'icons'
         }
       ],
-    }),
-  ],
+    },
+    html: [
+      {
+        template: './public/index.html',
+        filename: 'index.html',
+      },
+    ],
+  },
   optimization: {
     splitChunks: {
       chunks: 'all',
-      name: (module, chunks, cacheGroupKey) => {
-        return 'vendors';
-      },
+      name: 'vendors',
       cacheGroups: {
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,

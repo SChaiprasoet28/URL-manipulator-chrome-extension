@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .scrollable {
+    @apply overflow-y-auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollable::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
   margin: 0;
   padding: 16px;
