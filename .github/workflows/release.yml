@@ -3,17 +3,22 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
   release:
+    # Only run on master branch
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -42,20 +47,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build extension
+        run: pnpm build
+
+      - name: Package extension
+        run: pnpm package
+
+      # Get version type from commit message
       - name: Get version type from commit message
         id: version-type
         run: |
           VERSION_TYPE=$(node scripts/version.js get-version-type)
           echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
 
+      # Increment version in version.json (source of truth) and remove from package.json
       - name: Increment version
         id: increment-version
         run: |
           NEW_VERSION=$(node scripts/version.js increment ${{ steps.version-type.outputs.version_type }})
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
-
-      - name: Build extension
-        run: pnpm build
+          
+          # Commit the version bump
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add version.json package.json
+          git commit -m "chore: bump version to $NEW_VERSION [skip ci]"
+          git push
 
       - name: Generate changelog
         id: changelog
