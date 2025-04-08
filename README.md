@@ -1,4 +1,5 @@
 # URL Manipulator Chrome Extension
+![image](https://github.com/user-attachments/assets/5b471735-ee82-4366-8f35-b0fd3bdb923f)
 
 A browser extension that enables URL manipulation and transformation through customizable rules, built with React, TypeScript, and modern web technologies.
 
