@@ -1,6 +1,6 @@
 {
   "name": "url-manipulator-extension",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Chrome extension for URL manipulation",
   "scripts": {
     "build": "pnpm run generate-icons && rspack build --config rspack.config.js && pnpm run copy-files",
@@ -9,6 +9,9 @@
     "generate-icons": "node scripts/generate-icons.js",
     "copy-files": "node scripts/copy-files.js",
     "package": "node scripts/package-extension.js",
+    "version:get": "node scripts/version.js get",
+    "version:increment": "node scripts/version.js increment",
+    "version:set": "node scripts/version.js set",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
