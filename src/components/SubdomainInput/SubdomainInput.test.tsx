@@ -19,7 +19,7 @@ describe('SubdomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     expect(screen.getByLabelText(/subdomain/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/www/i)).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe('SubdomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/www/i);
     expect(input).toHaveValue('test');
   });
@@ -45,10 +45,10 @@ describe('SubdomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/www/i);
     fireEvent.change(input, { target: { value: 'newsubdomain' } });
-    
+
     expect(mockOnSubdomainChange).toHaveBeenCalledWith('newsubdomain');
   });
 
@@ -60,10 +60,10 @@ describe('SubdomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/www/i);
     fireEvent.keyDown(input, { key: 'Enter' });
-    
+
     expect(mockOnEnterPress).toHaveBeenCalledTimes(1);
   });
 
@@ -75,10 +75,10 @@ describe('SubdomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/www/i);
     fireEvent.keyDown(input, { key: 'Enter', shiftKey: true });
-    
+
     expect(mockOnEnterPress).not.toHaveBeenCalled();
   });
-}); 
+});

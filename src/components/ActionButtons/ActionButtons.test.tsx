@@ -11,17 +11,17 @@ describe('ActionButtons', () => {
   it('calls onSave when the button is clicked', () => {
     const mockOnSave = jest.fn();
     render(<ActionButtons onSave={mockOnSave} />);
-    
+
     const button = screen.getByRole('button', { name: /save & apply/i });
     fireEvent.click(button);
-    
+
     expect(mockOnSave).toHaveBeenCalledTimes(1);
   });
 
   it('has the correct styling classes', () => {
     render(<ActionButtons onSave={() => {}} />);
     const button = screen.getByRole('button', { name: /save & apply/i });
-    
+
     expect(button).toHaveClass(
       'inline-flex',
       'items-center',
@@ -46,7 +46,7 @@ describe('ActionButtons', () => {
   it('renders within a flex container with correct spacing', () => {
     const { container } = render(<ActionButtons onSave={() => {}} />);
     const wrapper = container.firstChild;
-    
+
     expect(wrapper).toHaveClass('flex', 'justify-end', 'space-x-3');
   });
-}); 
+});

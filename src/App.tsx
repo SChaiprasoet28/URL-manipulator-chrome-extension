@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import ProtocolToggle from './components/ProtocolToggle/ProtocolToggle';
 import DomainInput from './components/DomainInput/DomainInput';

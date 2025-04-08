@@ -45,4 +45,4 @@ const PathInput: React.FC<PathInputProps> = ({ path, onPathChange, onEnterPress 
   );
 };
 
-export default PathInput; 
+export default PathInput;

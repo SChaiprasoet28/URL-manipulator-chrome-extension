@@ -22,7 +22,7 @@ describe('TextInput', () => {
         id="test-input"
       />
     );
-    
+
     expect(screen.getByLabelText(/test label/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/test placeholder/i)).toBeInTheDocument();
   });
@@ -38,7 +38,7 @@ describe('TextInput', () => {
         id="test-input"
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/test placeholder/i);
     expect(input).toHaveValue('test value');
   });
@@ -54,10 +54,10 @@ describe('TextInput', () => {
         id="test-input"
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/test placeholder/i);
     fireEvent.change(input, { target: { value: 'new value' } });
-    
+
     expect(mockOnChange).toHaveBeenCalledWith('new value');
   });
 
@@ -72,10 +72,10 @@ describe('TextInput', () => {
         id="test-input"
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/test placeholder/i);
     fireEvent.keyDown(input, { key: 'Enter' });
-    
+
     expect(mockOnEnterPress).toHaveBeenCalledTimes(1);
   });
 
@@ -90,10 +90,10 @@ describe('TextInput', () => {
         id="test-input"
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/test placeholder/i);
     fireEvent.keyDown(input, { key: 'Enter', shiftKey: true });
-    
+
     expect(mockOnEnterPress).not.toHaveBeenCalled();
   });
-}); 
+});

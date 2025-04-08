@@ -19,7 +19,7 @@ describe('DomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     expect(screen.getByLabelText(/domain/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/example.com/i)).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe('DomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/example.com/i);
     expect(input).toHaveValue('example.com');
   });
@@ -45,10 +45,10 @@ describe('DomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/example.com/i);
     fireEvent.change(input, { target: { value: 'newdomain.com' } });
-    
+
     expect(mockOnDomainChange).toHaveBeenCalledWith('newdomain.com');
   });
 
@@ -60,10 +60,10 @@ describe('DomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/example.com/i);
     fireEvent.keyDown(input, { key: 'Enter' });
-    
+
     expect(mockOnEnterPress).toHaveBeenCalledTimes(1);
   });
 
@@ -75,10 +75,10 @@ describe('DomainInput', () => {
         onEnterPress={mockOnEnterPress}
       />
     );
-    
+
     const input = screen.getByPlaceholderText(/example.com/i);
     fireEvent.keyDown(input, { key: 'Enter', shiftKey: true });
-    
+
     expect(mockOnEnterPress).not.toHaveBeenCalled();
   });
-}); 
+});

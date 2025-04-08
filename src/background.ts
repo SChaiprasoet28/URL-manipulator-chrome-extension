@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 chrome.runtime.onInstalled.addListener(() => {
   console.log('URL Manipulator extension installed');
   chrome.storage.local.set({ corsEnabled: false });
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
   if (message.type === 'CORS_TOGGLE') {
     console.log('CORS setting changed:', message.enabled);
   }
@@ -14,8 +15,11 @@ chrome.webRequest.onHeadersReceived.addListener(
     let corsEnabled = false;
 
     try {
-      if (typeof window !== 'undefined' && (window as any).corsEnabled !== undefined) {
-        corsEnabled = (window as any).corsEnabled;
+      if (
+        typeof window !== 'undefined' &&
+        (window as { corsEnabled?: boolean }).corsEnabled !== undefined
+      ) {
+        corsEnabled = (window as { corsEnabled?: boolean }).corsEnabled || false;
       }
     } catch (e) {
       console.error('Error checking CORS setting:', e);
@@ -48,7 +52,7 @@ chrome.webRequest.onHeadersReceived.addListener(
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace === 'local' && changes.corsEnabled) {
     if (typeof window !== 'undefined') {
-      (window as any).corsEnabled = changes.corsEnabled.newValue;
+      (window as { corsEnabled?: boolean }).corsEnabled = changes.corsEnabled.newValue;
     }
   }
 });

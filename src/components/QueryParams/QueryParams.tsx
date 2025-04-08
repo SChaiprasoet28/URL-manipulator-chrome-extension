@@ -114,4 +114,4 @@ const QueryParams: React.FC<QueryParamsProps> = ({ params, onParamsChange }) => 
   );
 };
 
-export default QueryParams; 
+export default QueryParams;
