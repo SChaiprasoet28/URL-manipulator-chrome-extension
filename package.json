@@ -1,6 +1,6 @@
 {
   "name": "url-manipulator-extension",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chrome extension for URL manipulation",
   "scripts": {
     "build": "pnpm run generate-icons && rspack build --config rspack.config.js && pnpm run copy-files",
@@ -54,4 +54,4 @@
     "ts-jest": "^29.1.2",
     "archiver": "^6.0.1"
   }
-} 
+}
