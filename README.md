@@ -18,10 +18,10 @@ Created to streamline URL management for web developers.
 
 - <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width="20" height="20"/> React 18
 - <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" width="20" height="20"/> TypeScript
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="TailwindCSS" width="20" height="20"/> TailwindCSS
+- <img src="https://tailwindcss.com/favicons/favicon-32x32.png" alt="TailwindCSS" width="20" height="20"/> TailwindCSS
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" alt="RSpack" width="20" height="20"/> RSpack (for fast, Rust-based bundling)
 - <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jest/jest-plain.svg" alt="Jest" width="20" height="20"/> Jest for testing
-- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/eslint/eslint-original.svg" alt="ESLint" width="20" height="20"/> ESLint & <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prettier/prettier-original.svg" alt="Prettier" width="20" height="20"/> Prettier for code quality
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/eslint/eslint-original.svg" alt="ESLint" width="20" height="20"/> ESLint & <img src="https://prettier.io/icon.png" alt="Prettier" width="20" height="20"/> Prettier for code quality
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" alt="Chrome Extension" width="20" height="20"/> Chrome Extension Manifest V3
 
 ## Prerequisites
